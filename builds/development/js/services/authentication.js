@@ -17,7 +17,9 @@ myApp.factory('Authentication', function($firebaseObject, $rootScope, $firebaseA
 			var ref = new Firebase("https://sarthakangularapp.firebaseio.com/users/" + authUser.uid);
 			var user = $firebaseObject(ref);
 			$rootScope.currentUser = user;
-			console.log("User is:",user);
+			
+			console.log("User Name is:",user.name);
+
 			// Hey, I'm not able to display name of 'user' object in the console.
 		}
 		else{
