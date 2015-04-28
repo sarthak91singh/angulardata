@@ -1,7 +1,41 @@
-myApp.factory('Authentication', function($firebaseObject, $firebaseAuth, $routeParams, $location, FIREBASE_URL){
+myApp.factory('Authentication', function($firebaseObject, $rootScope, $firebaseAuth, $routeParams, $location, FIREBASE_URL){
 
 	var ref = new Firebase(FIREBASE_URL);
 	var auth = $firebaseAuth(ref);
+
+	auth.$onAuth(function(authUser){
+		if(authUser){
+			console.log("authentication is successful !!!!!!");
+			console.log("AuthUser is:",authUser);
+
+			var refOriginal = new Firebase("https://sarthakangularapp.firebaseio.com");
+			refOriginal.child("users").child(authUser.uid).set({
+		    	provider: authUser.provider,
+        		name: getName(authUser)
+    		});
+
+			var ref = new Firebase("https://sarthakangularapp.firebaseio.com/users/" + authUser.uid);
+			var user = $firebaseObject(ref);
+			$rootScope.currentUser = user;
+			console.log("User is:",user);
+			// Hey, I'm not able to display name of 'user' object in the console.
+		}
+		else{
+			console.log("authentication is  NOT successful !!!!!!");
+			$rootScope.currentUser = "";
+		}
+
+		function getName(authUser) {
+		    switch(authUser.provider) {
+			    case 'password':
+				    return authUser.password.email.replace(/@.*/, '');
+			    case 'twitter':
+				    return authUser.twitter.displayName;
+			    case 'facebook':
+				    return authUser.facebook.displayName;
+			}
+		};
+	});
 
 	var myObject ={
 		login: function(user){
