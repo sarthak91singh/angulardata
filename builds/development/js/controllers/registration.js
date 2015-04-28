@@ -4,7 +4,7 @@ myApp.controller('RegistrationController',function($scope, $location, $firebaseA
 
 	$scope.login = function(){
 
-		
+
 
 		Authentication.login($scope.user)
 		.then(function(){
@@ -15,7 +15,13 @@ myApp.controller('RegistrationController',function($scope, $location, $firebaseA
 	}
 
 	$scope.register = function(){
-		$location.path('/meetings');
+		Authentication.register($scope.user)
+		.then(function(){
+			Authentication.login($scope.user);
+			$location.path('/meetings');
+		}).catch(function(error){
+			$scope.message = error.message;
+		});
 	}
 
 
