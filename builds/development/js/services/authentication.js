@@ -54,6 +54,7 @@ myApp.factory('Authentication', function($firebaseObject, $rootScope, $firebaseA
 			});
 
 
+
 			// ......FOR CREATING CUSTOM FIELDS IN FIREBASE DATABASE....
 
 			/*.then(function(regUser){
@@ -70,7 +71,14 @@ myApp.factory('Authentication', function($firebaseObject, $rootScope, $firebaseA
 				})
 
 			});*/
-		}
+		},
+
+
+
+			logout: function(){
+				console.log("Now , I am in main logout function !!!!!!")
+				return auth.$unauth();
+			}
 	};
 
 	return myObject;
