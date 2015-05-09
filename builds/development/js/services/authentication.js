@@ -78,6 +78,10 @@ myApp.factory('Authentication', function($firebaseObject, $rootScope, $firebaseA
 			logout: function(){
 				console.log("Now , I am in main logout function !!!!!!")
 				return auth.$unauth();
+			},
+
+			requireAuth: function(){
+				return auth.$requireAuth();
 			}
 	};
 
