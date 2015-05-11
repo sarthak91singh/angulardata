@@ -1,7 +1,7 @@
 <div class="table">
 <ul>
 	<li class="branding"><a ng-href="#/">angulardata</a> </li>
-	<li><a ng-href="#/meetings">Meetings</a> </li>
+	<li ng-controller="MeetingsController"><a ng-href="#/meetings">Meetings {{'(' + meetingsLength + ')'}}</a> </li>
 	<li><a ng-href="#/login">Login</a></li>
 	<li><a ng-href="#/register">Register</a></li>
 </ul>

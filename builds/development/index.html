@@ -27,7 +27,8 @@
     </nav>
   </header>
 <div class="page">
-  <div class="userinfo" ng-controller="StatusController">
+  <div class="userinfo" ng-controller="StatusController" ng-show="showUserInfo">
+      <p>Hi user... Enjoy !!! </p>
       <a ng-href="#/login" ng-click="logout()">Logout</a>   
   </div>
   <main class="cf" ng-view></main>

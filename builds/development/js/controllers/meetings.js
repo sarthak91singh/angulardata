@@ -1,10 +1,20 @@
-myApp.controller('MeetingsController',function($scope,$firebaseObject){
+myApp.controller('MeetingsController',function($scope,$firebaseObject, $firebaseArray){
 	console.log("Inside MeetingsController");
 	var ref = new Firebase("https://sarthakangularapp.firebaseio.com/meetings");
 
-	$scope.meetings = $firebaseObject(ref);
+	var meetings = $firebaseObject(ref);
+	$scope.meetings = meetings;
 
-	var meetings = $scope.meetings;
+	var meetingsArray = $firebaseArray(ref);
+
+	meetingsArray.$loaded(function(data){		
+		$scope.meetingsLength = meetingsArray.length;
+		console.log("LENGTH:",meetingsArray.length);
+	});
+
+	meetingsArray.$watch(function(data){
+		$scope.meetingsLength = meetingsArray.length;		
+	});
 
 	$scope.addMeeting = function(){
 		console.log("Inside addMeeting function.....");

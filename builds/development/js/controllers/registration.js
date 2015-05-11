@@ -1,4 +1,4 @@
-myApp.controller('RegistrationController',function($scope, $location, $firebaseAuth, Authentication){
+myApp.controller('RegistrationController',function($scope, $rootScope, $location, $firebaseAuth, Authentication){
 
 	console.log("Inside RegistrationController");
 
@@ -9,6 +9,7 @@ myApp.controller('RegistrationController',function($scope, $location, $firebaseA
 		Authentication.login($scope.user)
 		.then(function(){
 			$location.path('/meetings');
+			$rootScope.showUserInfo = true;
 		}).catch(function(error){
 			$scope.message = error.message;
 		});
@@ -19,6 +20,7 @@ myApp.controller('RegistrationController',function($scope, $location, $firebaseA
 		.then(function(){
 			Authentication.login($scope.user);
 			$location.path('/meetings');
+			$rootScope.showUserInfo = true;
 		}).catch(function(error){
 			$scope.message = error.message;
 		});
