@@ -1,6 +1,6 @@
 myApp.factory('Authentication', function($firebaseObject, $rootScope, $firebaseAuth, $routeParams, $location, FIREBASE_URL){
 
-	var ref = new Firebase(FIREBASE_URL);
+	var ref = new Firebase(FIREBASE_URL + '/meetings');
 	var auth = $firebaseAuth(ref);
 
 	auth.$onAuth(function(authUser){

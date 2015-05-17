@@ -30,4 +30,23 @@ myApp.controller('MeetingsController',function($scope,$firebaseObject, $firebase
 		newRef.remove();
 	};
 
+
+
+
+// Create a callback which logs the current auth state
+function authDataCallback(authData) {
+  if (authData) {
+  	$scope.currentUser.regUser = authData.uid;
+  	console.log("AUTHDATA IS:", authData);
+    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+  } else {
+    console.log("User is logged out");
+  }
+}
+
+// Register the callback to be fired every time auth state changes
+var ref = new Firebase("https://sarthakangularapp.firebaseio.com");
+ref.onAuth(authDataCallback);
+
+
 });
