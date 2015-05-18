@@ -1,4 +1,4 @@
-myApp.controller('MeetingsController',function($scope,$firebaseObject, $firebaseArray){
+myApp.controller('MeetingsController',function($scope,$firebaseObject, $firebaseArray, FIREBASE_URL){
 	console.log("Inside MeetingsController");
 	var ref = new Firebase("https://sarthakangularapp.firebaseio.com/meetings");
 
